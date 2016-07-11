@@ -1,11 +1,17 @@
-'use strict';
 
-var matchOperatorsRe = /[|\\{}()[\]^$+*?.]/g;
-
-module.exports = function (str) {
-	if (typeof str !== 'string') {
-		throw new TypeError('Expected a string');
+(function (global, factory) {
+	'use strict';
+	if (typeof module === 'object' && module.exports) {
+		module.exports = factory();
+	} else {
+		global.escapeStringRegexp = factory();
 	}
-
-	return str.replace(matchOperatorsRe, '\\$&');
-};
+})(this, function () {
+	var matchOperatorsRe = /[|\\{}()[\]^$+*?.]/g;
+	return function (str) {
+		if (typeof str !== 'string') {
+			throw new TypeError('Expected a string');
+		}
+		return str.replace(matchOperatorsRe, '\\$&');
+	};
+});
