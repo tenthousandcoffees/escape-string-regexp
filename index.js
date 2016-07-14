@@ -8,7 +8,7 @@
 	}
 })(this, function () {
 	var matchOperatorsRe = /[|\\{}()[\]^$+*?.]/g;
-	return function (str) {
+	return function escapeStringRegexp(str) {
 		if (typeof str !== 'string') {
 			throw new TypeError('Expected a string');
 		}
